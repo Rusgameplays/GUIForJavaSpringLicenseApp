@@ -1,0 +1,10 @@
+# ninja log v6
+14	431	7576079881618905	CMakeFiles/GUI.dir/TrayIcon.cpp.obj	57958a8e03d9b9f1
+12	451	7576079881593592	CMakeFiles/GUI.dir/MainWindow.cpp.obj	ec7671a4f770ee97
+7	637	7576083242839946	CMakeFiles/GUI.dir/PipeUtils.cpp.obj	3b925c5588e92f16
+6	679	7576079881542092	CMakeFiles/GUI.dir/LoginWindow.cpp.obj	1624633eaf4a91b6
+7	713	7576079881552112	CMakeFiles/GUI.dir/RegistrationWindow.cpp.obj	b0d4f1f1e41a1a70
+3	633	7576083242799339	CMakeFiles/GUI.dir/main.cpp.obj	289a275df9f9b02b
+6	732	7576083242829912	CMakeFiles/GUI.dir/ActivateWindow.cpp.obj	9bde2ac4e0eb7227
+732	824	7576083250088968	GUI.exe	f58c04f7656e19ee
+2	88	7576083867933278	GUI.exe	895369c8c0ebb4ff
