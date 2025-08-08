@@ -31,8 +31,11 @@ int main() {
     wc.lpszClassName = L"AdminWindowClass";
     RegisterClassEx(&wc);
 
-    hwndMain = CreateWindowEx(0, L"MainWindowClass", L"Main Window", WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-                               CW_USEDEFAULT, CW_USEDEFAULT, 300, 200, NULL, NULL, hInst, NULL);
+    hwndMain = CreateWindowEx(0, L"MainWindowClass", L"Main Window",
+                          WS_OVERLAPPEDWINDOW,
+                          CW_USEDEFAULT, CW_USEDEFAULT, 300, 200,
+                          NULL, NULL, hInst, NULL);
+
 
     CreateTrayIcon(hwndMain);
 

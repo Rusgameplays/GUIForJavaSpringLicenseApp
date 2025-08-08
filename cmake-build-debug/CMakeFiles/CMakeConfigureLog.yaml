@@ -39,7 +39,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
       
       The C compiler identification is MSVC, found in:
-        C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdC/CMakeCCompilerId.exe
+        C:/Users/solod/Desktop/MTUCI/архив/Антивирус/GUI/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdC/CMakeCCompilerId.exe
       
   -
     kind: "message-v1"
@@ -51,7 +51,7 @@ events:
     message: |
       Detecting C compiler /showIncludes prefix:
         main.c
-        Примечание: включение файла:  C:\\Users\\solod\\Desktop\\MTUCI\\3course\\GUI\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
+        Примечание: включение файла:  C:\\Users\\solod\\Desktop\\MTUCI\\архив\\Антивирус\\GUI\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "Примечание: включение файла:  "
   -
@@ -85,7 +85,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdCXX/CMakeCXXCompilerId.exe
+        C:/Users/solod/Desktop/MTUCI/архив/Антивирус/GUI/cmake-build-debug/CMakeFiles/3.29.6/CompilerIdCXX/CMakeCXXCompilerId.exe
       
   -
     kind: "message-v1"
@@ -97,7 +97,7 @@ events:
     message: |
       Detecting CXX compiler /showIncludes prefix:
         main.c
-        Примечание: включение файла:  C:\\Users\\solod\\Desktop\\MTUCI\\3course\\GUI\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
+        Примечание: включение файла:  C:\\Users\\solod\\Desktop\\MTUCI\\архив\\Антивирус\\GUI\\cmake-build-debug\\CMakeFiles\\ShowIncludes\\foo.h
         
       Found prefix "Примечание: включение файла:  "
   -
@@ -109,8 +109,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7prpjg"
-      binary: "C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7prpjg"
+      source: "C:/Users/solod/Desktop/MTUCI/\u0430\u0440\u0445\u0438\u0432/\u0410\u043d\u0442\u0438\u0432\u0438\u0440\u0443\u0441/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2is2br"
+      binary: "C:/Users/solod/Desktop/MTUCI/\u0430\u0440\u0445\u0438\u0432/\u0410\u043d\u0442\u0438\u0432\u0438\u0440\u0443\u0441/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2is2br"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -119,11 +119,11 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-7prpjg'
+        Change Dir: 'C:/Users/solod/Desktop/MTUCI/архив/Антивирус/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-2is2br'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.2.2/bin/ninja/win/x64/ninja.exe" -v cmTC_07364
-        [1/2] "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe"  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_07364.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_07364.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\share\\cmake-3.29\\Modules\\CMakeCCompilerABI.c"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_07364.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\mt.exe --manifests  -- "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\link.exe" /nologo CMakeFiles\\cmTC_07364.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_07364.exe /implib:cmTC_07364.lib /pdb:cmTC_07364.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.2.2/bin/ninja/win/x64/ninja.exe" -v cmTC_c657a
+        [1/2] "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe"  /nologo   /DWIN32 /D_WINDOWS  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_c657a.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_c657a.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\share\\cmake-3.29\\Modules\\CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_c657a.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\mt.exe --manifests  -- "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\link.exe" /nologo CMakeFiles\\cmTC_c657a.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_c657a.exe /implib:cmTC_c657a.lib /pdb:cmTC_c657a.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -
@@ -151,8 +151,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-a05kuk"
-      binary: "C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-a05kuk"
+      source: "C:/Users/solod/Desktop/MTUCI/\u0430\u0440\u0445\u0438\u0432/\u0410\u043d\u0442\u0438\u0432\u0438\u0440\u0443\u0441/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-eimm7f"
+      binary: "C:/Users/solod/Desktop/MTUCI/\u0430\u0440\u0445\u0438\u0432/\u0410\u043d\u0442\u0438\u0432\u0438\u0440\u0443\u0441/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-eimm7f"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -162,11 +162,11 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/solod/Desktop/MTUCI/3course/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-a05kuk'
+        Change Dir: 'C:/Users/solod/Desktop/MTUCI/архив/Антивирус/GUI/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-eimm7f'
         
-        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.2.2/bin/ninja/win/x64/ninja.exe" -v cmTC_b9ac8
-        [1/2] "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe"  /nologo /TP   /DWIN32 /D_WINDOWS /GR /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_b9ac8.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_b9ac8.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\share\\cmake-3.29\\Modules\\CMakeCXXCompilerABI.cpp"
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_b9ac8.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\mt.exe --manifests  -- "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\link.exe" /nologo CMakeFiles\\cmTC_b9ac8.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_b9ac8.exe /implib:cmTC_b9ac8.lib /pdb:cmTC_b9ac8.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        Run Build Command(s): "C:/Program Files/JetBrains/CLion 2024.2.2/bin/ninja/win/x64/ninja.exe" -v cmTC_6564c
+        [1/2] "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe"  /nologo /TP   /DWIN32 /D_WINDOWS /GR /EHsc  /Zi /Ob0 /Od /RTC1 -MDd /showIncludes /FoCMakeFiles\\cmTC_6564c.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_6564c.dir\\ /FS -c "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\share\\cmake-3.29\\Modules\\CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\JetBrains\\CLion 2024.2.2\\bin\\cmake\\win\\x64\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_6564c.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\10.0.22621.0\\x64\\mt.exe --manifests  -- "C:\\PROGRA~1\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\link.exe" /nologo CMakeFiles\\cmTC_6564c.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_6564c.exe /implib:cmTC_6564c.lib /pdb:cmTC_6564c.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
         
       exitCode: 0
   -

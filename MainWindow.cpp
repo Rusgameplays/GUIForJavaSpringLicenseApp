@@ -1,3 +1,5 @@
+#include <string>
+
 #include "LoginWindow.h"
 #include "RegistrationWindow.h"
 #include "windows.h"
@@ -9,6 +11,7 @@
 #define ID_TRAY_MENU_EXIT 1003
 
 extern HWND hwndMain;
+
 
 LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     HBRUSH hBrush;
@@ -31,6 +34,11 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
             int registerButtonX = (windowWidth - buttonWidth) / 2;
             int registerButtonY = (windowHeight - buttonHeight) / 2 + 30;
 
+            int exitButtonX = (windowWidth - buttonWidth) / 2;
+            int exitButtonY = (windowHeight - buttonHeight) / 2 + 90;
+
+            CreateWindow(L"BUTTON", L"Exit", WS_VISIBLE | WS_CHILD | BS_FLAT,
+                exitButtonX, exitButtonY, buttonWidth, buttonHeight, hwnd, (HMENU)3, NULL, NULL);
             CreateWindow(L"BUTTON", L"Login", WS_VISIBLE | WS_CHILD | BS_FLAT,
                 loginButtonX, loginButtonY, buttonWidth, buttonHeight, hwnd, (HMENU)1, NULL, NULL);
             CreateWindow(L"BUTTON", L"Register", WS_VISIBLE | WS_CHILD | BS_FLAT,
@@ -44,6 +52,7 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
                 DEFAULT_PITCH, L"Arial");
             SendMessage(GetDlgItem(hwnd, 1), WM_SETFONT, WPARAM(hFont), TRUE);
             SendMessage(GetDlgItem(hwnd, 2), WM_SETFONT, WPARAM(hFont), TRUE);
+            SendMessage(GetDlgItem(hwnd, 3), WM_SETFONT, WPARAM(hFont), TRUE);
 
             CreateTrayIcon(hwnd);
         }
@@ -54,16 +63,36 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPara
                 ShowLoginWindow(hwnd);
             } else if (LOWORD(wParam) == 2) {
                 ShowRegistrationWindow(hwnd);
-            } else if (LOWORD(wParam) == ID_TRAY_MENU_EXIT) {
+            }
+            else if (LOWORD(wParam) == 3 || LOWORD(wParam) == ID_TRAY_MENU_EXIT) {
+                // Отправка команды завершения службы
+                HANDLE hPipe = CreateFileW(
+                    L"\\\\.\\pipe\\MySimpleServicePipe",
+                    GENERIC_WRITE,
+                    0,
+                    NULL,
+                    OPEN_EXISTING,
+                    0,
+                    NULL
+                );
+
+                if (hPipe != INVALID_HANDLE_VALUE) {
+                    const char* command = "shutdown_service";
+                    DWORD bytesWritten = 0;
+                    WriteFile(hPipe, command, (DWORD)strlen(command), &bytesWritten, NULL);
+                    CloseHandle(hPipe);
+                } else {
+                    MessageBox(NULL, L"Не удалось подключиться к пайпу службы.", L"Ошибка", MB_OK | MB_ICONERROR);
+                }
 
                 Shell_NotifyIcon(NIM_DELETE, &nid);
                 PostQuitMessage(0);
             } else if (LOWORD(wParam) == ID_TRAY_MENU_OPEN) {
-
                 ShowWindow(hwnd, SW_SHOWNORMAL);
                 SetForegroundWindow(hwnd);
             }
-            break;
+        break;
+
 
         case WM_CLOSE:
             ShowWindow(hwnd, SW_HIDE);

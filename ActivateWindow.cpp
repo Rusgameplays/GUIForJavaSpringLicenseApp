@@ -4,10 +4,13 @@
 #include <iphlpapi.h>
 #include <sstream>
 #include <codecvt>
+#include <fstream>
+
+#include "AntivirusMainWindow.h"
 #include "PipeUtils.h"
 
 #pragma comment(lib, "iphlpapi.lib")
-
+const wchar_t ACTIVATE_WINDOW_CLASS[] = L"ActivateWindowClass";
 LRESULT CALLBACK ActivateWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 std::string wstringToString(const std::wstring& wstr) {
@@ -132,8 +135,21 @@ LRESULT CALLBACK ActivateWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM l
 
                         if (serverResponse.find("{\"serverDate") == 0) {
                             MessageBox(hwnd, std::wstring(serverResponse.begin(), serverResponse.end()).c_str(), L"Activation Successful", MB_OK | MB_ICONINFORMATION);
+                            RegisterAntivirusMainWindowClass(GetModuleHandle(NULL));
+                            ShowAntivirusMainWindow();
+                            DestroyWindow(hwnd);
                         } else {
                             MessageBox(hwnd, L"Activation Failed", L"Error", MB_OK | MB_ICONERROR);
+                            //MessageBox(hwnd, std::wstring(serverResponse.begin(), serverResponse.end()).c_str(), L"Server Response", MB_OK | MB_ICONERROR);
+                            std::ofstream out("C:\\Users\\solod\\ServiceResponse.txt", std::ios::app);
+                            if (out.is_open()) {
+                                out << "Server response:\n" << serverResponse << "\n\n";
+                                out.close();
+                            } else {
+                                MessageBox(hwnd, L"Failed to write server response to file.", L"File Error", MB_OK | MB_ICONERROR);
+                            }
+
+
                         }
                     } else {
                         MessageBox(hwnd, L"Failed to read response from server.", L"Error", MB_OK | MB_ICONERROR);
@@ -154,25 +170,42 @@ LRESULT CALLBACK ActivateWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM l
     }
     return 0;
 }
+void RegisterActivateWindowClass(HINSTANCE hInstance) {
+    static bool isRegistered = false;
+    if (isRegistered)
+        return;
 
-void ShowActivateWindow(HWND hwnd) {
     WNDCLASS wc = {};
     wc.lpfnWndProc = ActivateWindowProc;
-    wc.hInstance = GetModuleHandle(NULL);
-    wc.lpszClassName = L"ActivateWindowClass";
+    wc.hInstance = hInstance;
+    wc.lpszClassName = ACTIVATE_WINDOW_CLASS;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = CreateSolidBrush(RGB(240, 248, 255)); // нежный фон
 
     if (!RegisterClass(&wc)) {
-        MessageBox(NULL, L"Window class registration failed!", L"Error", MB_OK | MB_ICONERROR);
-        return;
-    }
-
-    HWND hwndActivate = CreateWindowEx(
-        0, L"ActivateWindowClass", L"Activate Panel", WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-        CW_USEDEFAULT, CW_USEDEFAULT, 400, 300, hwnd, NULL, wc.hInstance, NULL
-    );
-
-    if (!hwndActivate) {
-        MessageBox(NULL, L"Failed to create Activate window.", L"Error", MB_OK | MB_ICONERROR);
+        MessageBox(NULL, L"Failed to register activate window class!", L"Error", MB_OK | MB_ICONERROR);
+    } else {
+        isRegistered = true;
     }
 }
+void ShowActivateWindow(HWND hwndParent = NULL) {
+    HINSTANCE hInstance = GetModuleHandle(NULL);
+    RegisterActivateWindowClass(hInstance);
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        ACTIVATE_WINDOW_CLASS,
+        L"Activate Panel",
+        WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+        CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
+        hwndParent,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (!hwnd) {
+        MessageBox(hwndParent, L"Failed to create activate window.", L"Error", MB_OK | MB_ICONERROR);
+    }
+}
+

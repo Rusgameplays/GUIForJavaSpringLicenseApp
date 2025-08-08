@@ -1,8 +1,5 @@
 #include "PipeUtils.h"
 
-
-
-
 bool sendCommandToPipe(HANDLE hPipe, const std::string& command) {
     DWORD bytesWritten;
     if (!WriteFile(hPipe, command.c_str(), command.size(), &bytesWritten, NULL)) {
@@ -13,7 +10,7 @@ bool sendCommandToPipe(HANDLE hPipe, const std::string& command) {
 
 std::string getResponseFromPipe(HANDLE hPipe) {
     DWORD bytesRead;
-    char buffer[1024];
+    char buffer[4196];
     std::string response = "";
 
     if (ReadFile(hPipe, buffer, sizeof(buffer) - 1, &bytesRead, NULL)) {

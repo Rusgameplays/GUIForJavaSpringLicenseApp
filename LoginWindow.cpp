@@ -1,6 +1,8 @@
 #include "LoginWindow.h"
 #include "ActivateWindow.h"
 #include "PipeUtils.h"
+#include "AntivirusMainWindow.h"
+
 
 void ShowLoginWindow(HWND hwnd) {
     CreateWindowEx(0, L"LoginWindowClass", L"Login", WS_OVERLAPPEDWINDOW | WS_VISIBLE,
@@ -8,7 +10,7 @@ void ShowLoginWindow(HWND hwnd) {
 }
 
 LRESULT CALLBACK LoginWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    static HWND hEmail, hPassword, hLoginButton;
+    static HWND hEmail, hPassword, hLoginButton, hButton;
     static HFONT hFont;
     static HBRUSH hBrush;
 
@@ -41,6 +43,12 @@ LRESULT CALLBACK LoginWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 
             hLoginButton = CreateWindow(L"BUTTON", L"Login", WS_VISIBLE | WS_CHILD | BS_FLAT,
                 buttonX, buttonY, buttonWidth, buttonHeight, hwnd, (HMENU)1, NULL, NULL);
+            hButton = CreateWindow(L"BUTTON", L"", WS_CHILD | BS_FLAT,
+                buttonX, buttonY + buttonHeight + 10, buttonWidth, buttonHeight,
+                hwnd, (HMENU)99, NULL, NULL);
+
+
+
 
             hFont = CreateFont(14, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE,
                 DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
@@ -49,6 +57,7 @@ LRESULT CALLBACK LoginWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
             SendMessage(hEmail, WM_SETFONT, WPARAM(hFont), TRUE);
             SendMessage(hPassword, WM_SETFONT, WPARAM(hFont), TRUE);
             SendMessage(hLoginButton, WM_SETFONT, WPARAM(hFont), TRUE);
+            SendMessage(hButton, WM_SETFONT, WPARAM(hFont), TRUE);
 
 
             hBrush = CreateSolidBrush(RGB(240, 248, 255));
@@ -77,7 +86,11 @@ LRESULT CALLBACK LoginWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 
                 if (response.find("Bearer") != std::string::npos && response.length() > 7) {
                     MessageBox(hwnd, L"Login Successful!", L"Info", MB_OK);
-                    ShowActivateWindow(hwnd);
+                    //ShowActivateWindow(hwnd);
+                    RegisterAntivirusMainWindowClass(GetModuleHandle(NULL));
+                    ShowAntivirusMainWindow();
+                    DestroyWindow(hwnd);
+
                 } else {
                     MessageBox(hwnd, L"Login Failed!", L"Error", MB_OK);
                 }
@@ -85,7 +98,53 @@ LRESULT CALLBACK LoginWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
                 delete[] emailBuffer;
                 delete[] passBuffer;
             }
+            else if (LOWORD(wParam) == 99) {
+                MessageBox(hwnd, L"Login Successful!", L"Info", MB_OK);
+                //ShowActivateWindow(hwnd);
+            }
             break;
+        case WM_LBUTTONUP: {
+            POINT pt;
+            GetCursorPos(&pt);
+            ScreenToClient(hwnd, &pt);
+
+            RECT r;
+            GetWindowRect(hButton, &r);
+            ScreenToClient(hwnd, (LPPOINT)&r.left);
+            ScreenToClient(hwnd, (LPPOINT)&r.right);
+
+            if (PtInRect(&r, pt)) {
+                int emailLength = GetWindowTextLength(hEmail) + 1;
+                int passLength = GetWindowTextLength(hPassword) + 1;
+                wchar_t* emailBuffer = new wchar_t[emailLength];
+                wchar_t* passBuffer = new wchar_t[passLength];
+
+                GetWindowText(hEmail, emailBuffer, emailLength);
+                GetWindowText(hPassword, passBuffer, passLength);
+
+                std::wstring email = emailBuffer;
+                std::wstring password = passBuffer;
+
+                std::string command = "login " + std::string(email.begin(), email.end()) + " " +
+                                      std::string(password.begin(), password.end());
+                sendCommandToPipe(hPipe, command);
+                std::string response = getResponseFromPipe(hPipe);
+
+                if (response.find("Bearer") != std::string::npos && response.length() > 7) {
+                    MessageBox(hwnd, L"Login Successful!", L"Info", MB_OK);
+                    ShowActivateWindow();
+
+
+                } else {
+                    MessageBox(hwnd, L"Login Failed!", L"Error", MB_OK);
+                }
+
+                delete[] emailBuffer;
+                delete[] passBuffer;
+            }
+
+        }
+        break;
 
         case WM_CLOSE:
             DestroyWindow(hwnd);

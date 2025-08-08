@@ -3,6 +3,9 @@ project(GUI)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
+
+
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /subsystem:windows")
 add_definitions(-DUNICODE -D_UNICODE)
 add_executable(GUI
@@ -14,6 +17,8 @@ add_executable(GUI
         MainWindow.cpp
         TrayIcon.h
         TrayIcon.cpp
+        AntivirusMainWindow.cpp
+        AntivirusMainWindow.h
 )
 
 target_link_libraries(GUI PRIVATE
@@ -28,3 +33,8 @@ target_link_libraries(GUI PRIVATE
         comdlg32.lib
         advapi32.lib
 )
+
+set_target_properties(GUI PROPERTIES
+        LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup"
+)
+
